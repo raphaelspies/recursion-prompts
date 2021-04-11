@@ -18,32 +18,24 @@ var factorial = function(n) {
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
-  var total = 0;
-  if (array === undefined) {
-    return null;
+  if (array.length === 0) {
+    return 0;
   }
-  var iterator = array.length;
-  if (iterator === 0) {
-    return total;
-  }
-  return total + sum(array[iterator - 1]);
-};
+  return array[0] + sum(array.slice(1));
+  };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
-  // var total = 0;
-  // var innerFunction(array) {
-  //   if (!Array.isArray(array)) {
-  //     return array;
-  //   }
-  // }
-  // array.forEach(function(item) {
-  //   total += innerFunction(item);
-  // })
-  // innerFunction(array);
-  // return total;
-
+  if (array.length === 0) {
+      return 0;
+  }
+  if (!Array.isArray(array[0])) {
+      return array[0] + arraySum(array.slice(1));
+  }
+  else {
+      return array.slice(0, array.length - 1) + arraySum(array.slice(1, array.length - 1));
+  }
 };
 
 // 4. Check if a number is even.
@@ -55,7 +47,6 @@ var isEven = function(n) {
     return false;
   }
   return n = isEven(n - 2);
-	console.log(n);
 };
 
 // 5. Sum all integers below a given integer.
@@ -74,8 +65,18 @@ var sumBelow = function(n) {
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+  if (y === x) {
+      console.log('y = x');
+      return [];
+  } else if (x + 1 === y || x - 1 === y) {
+      return [];
+  } else if (x < y) {
+    return Array.from([x + 1]).concat(range(x + 1, y));
+  } else if (x > y) {
+    return Array.from([x - 1]).concat(range(x - 1, y));
+  }
+}
 
-};
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
@@ -95,7 +96,6 @@ var powerOfTwo = function(n) {
   } else if (n < 1) {
     return false;
   }
-  console.log(n);
   return powerOfTwo(n/2);
 };
 
