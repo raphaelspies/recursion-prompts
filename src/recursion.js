@@ -34,7 +34,7 @@ var arraySum = function(array) {
       return array[0] + arraySum(array.slice(1));
   }
   else {
-      return array.slice(0, array.length - 1) + arraySum(array.slice(1, array.length - 1));
+      return arraySum(array.slice(0));
   }
 };
 
@@ -108,11 +108,24 @@ var powerOfTwo = function(n) {
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
-  //switch every letter with the one behind it until...
+  if (string.length === 0) {
+      return string;
+  }
+  return string.slice(-1).concat(reverse(string.slice(0, -1)));
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  //if same backards as forwards
+  string = string.toLowerCase();
+  if (string.length <= 1) {
+      return true;
+  } else if (string.slice(0, 1) === " " && string.slice(-1) !== " ") {
+    return (string.slice(1,2) === string.slice(-1) && palindrome(string.slice(2, -1)));
+  } else if (string.slice(-1) === " " && string.slice(0,1) !== " ") {
+    return (string.slice(0, 1) === string.slice(-2, -1) && palindrome(string.slice(1, -2)));
+  }
+return string.slice(0, 1) === string.slice(-1) && palindrome(string.slice(1, -1));
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -155,6 +168,11 @@ var createArray = function(str) {
 
 // 17. Reverse the order of an array
 var reverseArr = function(array) {
+  var temp = string.split("");
+  temp.splice([temp.length - 1],0,temp.shift(0));
+  temp.splice([temp.length - 2],0,temp.shift(0));
+  temp.splice([temp.length - 3],0,temp.shift(0));
+  temp.splice([temp.length - 4],0,temp.shift(0));
 };
 
 // 18. Create a new array with a given value and length.
