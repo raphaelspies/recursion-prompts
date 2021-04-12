@@ -34,7 +34,7 @@ var arraySum = function(array) {
       return array[0] + arraySum(array.slice(1));
   }
   else {
-      return arraySum(array.slice(0));
+    return arraySum(array[0]) + arraySum(array.slice(1));
   }
 };
 
